@@ -1,0 +1,92 @@
+[
+    {
+        "Threat Type": "Spoofing",
+        "Scenario": "An attacker impersonates a legitimate browser client since no authentication mechanism exists, sending forged requests to the Web Application.",
+        "Potential Impact": "Unauthorized operations, submission of malicious data into the message queue, and triggering unintended background worker tasks."
+    },
+    {
+        "Threat Type": "Spoofing",
+        "Scenario": "An attacker impersonates the Web Application when communicating with the Message Queue due to lack of strong identity validation.",
+        "Potential Impact": "Malicious actors could publish or consume messages, disrupting workflow or injecting harmful payloads."
+    },
+    {
+        "Threat Type": "Spoofing",
+        "Scenario": "An attacker impersonates the Background Worker and attempts to read or modify the Database.",
+        "Potential Impact": "Unauthorized database queries could compromise confidentiality and integrity of stored confidential data."
+    },
+    {
+        "Threat Type": "Tampering",
+        "Scenario": "Messages in the untrusted Message Queue are altered by an attacker who gains access to the queue infrastructure.",
+        "Potential Impact": "Corrupted data sent to the Background Worker could cause incorrect processing, data loss, or system malfunction."
+    },
+    {
+        "Threat Type": "Tampering",
+        "Scenario": "An attacker tampers with data in the untrusted Database due to insufficient controls or misconfigured access permissions.",
+        "Potential Impact": "Persistent data corruption, data integrity violations, and incorrect output from the Background Worker."
+    },
+    {
+        "Threat Type": "Tampering",
+        "Scenario": "Configuration files for the Web Application or Background Worker could be altered if stored insecurely.",
+        "Potential Impact": "Credential compromise, redirection of service flows, or unauthorized escalation of privileges."
+    },
+    {
+        "Threat Type": "Repudiation",
+        "Scenario": "Lack of authentication makes it impossible to verify which browser user performed particular actions.",
+        "Potential Impact": "Difficulty investigating security incidents, inability to attribute malicious activity, and compliance violations."
+    },
+    {
+        "Threat Type": "Repudiation",
+        "Scenario": "No logging of message queue operations allows attackers to deny modifications or message injections.",
+        "Potential Impact": "Inability to reconstruct event timelines or detect tampering in message flow."
+    },
+    {
+        "Threat Type": "Repudiation",
+        "Scenario": "Background Worker activity may not be logged sufficiently; attackers could deny querying or altering sensitive database content.",
+        "Potential Impact": "Forensic gaps during incident response and increased risk of undetected malicious database access."
+    },
+    {
+        "Threat Type": "Information Disclosure",
+        "Scenario": "Confidential data processed in the Message Queue may be exposed due to weak encryption, insecure endpoints, or unauthorized access.",
+        "Potential Impact": "Leakage of confidential or sensitive information to attackers or third parties."
+    },
+    {
+        "Threat Type": "Information Disclosure",
+        "Scenario": "Database queries executed by the Background Worker could reveal sensitive data if database access is intercepted or improperly restricted.",
+        "Potential Impact": "Sensitive data exposure and potential legal, financial, or reputational damage."
+    },
+    {
+        "Threat Type": "Information Disclosure",
+        "Scenario": "Credentials stored in Web Application Config or Background Worker Config may be exposed if stored in plaintext or accessible to unauthorized users.",
+        "Potential Impact": "Full compromise of message queue or database access, allowing deep system intrusion."
+    },
+    {
+        "Threat Type": "Denial of Service",
+        "Scenario": "Attacker floods the Web Application with requests due to lack of authentication or rate limiting.",
+        "Potential Impact": "Service unavailability for legitimate users, backlog buildup in message queue, cascading failures."
+    },
+    {
+        "Threat Type": "Denial of Service",
+        "Scenario": "Attacker overloads the Message Queue with large or malformed messages.",
+        "Potential Impact": "Queue congestion causing the Background Worker to fail or fall behind, leading to system-wide processing delays."
+    },
+    {
+        "Threat Type": "Denial of Service",
+        "Scenario": "Database becomes overloaded through excessive Background Worker queries triggered by malicious or amplified queue input.",
+        "Potential Impact": "Database unavailability impacting all downstream tasks and potentially causing full system outage."
+    },
+    {
+        "Threat Type": "Elevation of Privilege",
+        "Scenario": "Compromise of Web Application Config allows attacker to access privileged message queue operations.",
+        "Potential Impact": "Attacker takes over message flow, manipulates job processing, or injects harmful operations."
+    },
+    {
+        "Threat Type": "Elevation of Privilege",
+        "Scenario": "Attacker compromises Background Worker Config to gain database credentials.",
+        "Potential Impact": "Complete control over database, including modifying or deleting sensitive information."
+    },
+    {
+        "Threat Type": "Elevation of Privilege",
+        "Scenario": "Malicious message crafted in the queue exploits a vulnerability in the Background Worker to execute arbitrary code.",
+        "Potential Impact": "Worker compromise leading to full system takeover or lateral movement."
+    }
+]

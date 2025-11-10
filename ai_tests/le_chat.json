@@ -1,0 +1,82 @@
+[
+    {
+        "Threat Type": "Spoofing",
+        "Scenario": "An attacker sends malicious messages to the Web Application, impersonating a legitimate Browser user, since there is no authentication mechanism in place.",
+        "Potential Impact": "Unauthorized actions or data manipulation could occur, as the system cannot distinguish between legitimate and malicious requests."
+    },
+    {
+        "Threat Type": "Spoofing",
+        "Scenario": "An attacker gains access to the Message Queue credentials stored in the Web Application Config and injects spoofed messages into the queue, impersonating the Web Application.",
+        "Potential Impact": "The Background Worker processes malicious messages, potentially leading to unauthorized database operations or data corruption."
+    },
+    {
+        "Threat Type": "Spoofing",
+        "Scenario": "An attacker compromises the Background Worker Config and uses the stored credentials to impersonate the Background Worker when querying the Database, bypassing any intended access controls.",
+        "Potential Impact": "Unauthorized data access, modification, or deletion could occur, compromising the integrity and confidentiality of the data."
+    },
+    {
+        "Threat Type": "Tampering",
+        "Scenario": "An attacker intercepts and modifies messages in transit between the Browser and the Web Application, altering the content before it is placed in the Message Queue.",
+        "Potential Impact": "The Background Worker processes tampered messages, leading to incorrect or malicious actions being performed on the Database."
+    },
+    {
+        "Threat Type": "Tampering",
+        "Scenario": "An attacker with access to the Message Queue directly alters queued messages before the Background Worker processes them, changing the intended operation or payload.",
+        "Potential Impact": "Data integrity is compromised, and the Background Worker may perform unintended or malicious operations on the Database."
+    },
+    {
+        "Threat Type": "Tampering",
+        "Scenario": "An attacker compromises the Web Application Config or Background Worker Config and alters the stored credentials, redirecting the system to use a malicious Message Queue or Database.",
+        "Potential Impact": "All subsequent messages or database operations are directed to attacker-controlled systems, leading to data exfiltration or manipulation."
+    },
+    {
+        "Threat Type": "Repudiation",
+        "Scenario": "A malicious user sends a message to the Web Application, but later denies doing so, as there is no authentication or logging mechanism to prove the origin of the message.",
+        "Potential Impact": "The system cannot attribute actions to specific users, making it impossible to hold individuals accountable for their actions."
+    },
+    {
+        "Threat Type": "Repudiation",
+        "Scenario": "The Background Worker performs an action on the Database, but there is no audit trail to prove which message or user triggered the action, as messages are not signed or logged with user context.",
+        "Potential Impact": "The system cannot provide non-repudiation, making it difficult to resolve disputes or investigate incidents."
+    },
+    {
+        "Threat Type": "Information Disclosure",
+        "Scenario": "An attacker eavesdrops on the communication between the Browser and the Web Application, capturing sensitive data included in the messages, as there is no encryption in transit.",
+        "Potential Impact": "Confidential information is exposed, leading to privacy violations or further attacks."
+    },
+    {
+        "Threat Type": "Information Disclosure",
+        "Scenario": "An attacker gains read access to the Message Queue and views sensitive messages before they are processed by the Background Worker, as the queue is untrusted and not encrypted.",
+        "Potential Impact": "Sensitive data is exposed, potentially leading to regulatory non-compliance or reputational damage."
+    },
+    {
+        "Threat Type": "Information Disclosure",
+        "Scenario": "An attacker compromises the Web Application Config or Background Worker Config, exposing the credentials used to access the Message Queue or Database.",
+        "Potential Impact": "Credentials are leaked, allowing further unauthorized access to the Message Queue or Database."
+    },
+    {
+        "Threat Type": "Denial of Service",
+        "Scenario": "An attacker floods the Web Application with a high volume of messages, overwhelming the Message Queue and causing legitimate messages to be delayed or lost.",
+        "Potential Impact": "Service degradation or outage occurs, affecting the availability of the application for legitimate users."
+    },
+    {
+        "Threat Type": "Denial of Service",
+        "Scenario": "An attacker sends malformed or oversized messages to the Web Application, causing the Message Queue or Background Worker to crash or become unresponsive.",
+        "Potential Impact": "The Background Worker is unable to process messages, leading to a backlog and potential system failure."
+    },
+    {
+        "Threat Type": "Denial of Service",
+        "Scenario": "An attacker repeatedly queries the Database through the Background Worker, exhausting database resources and causing timeouts for legitimate requests.",
+        "Potential Impact": "Database performance degrades, leading to service unavailability for legitimate users."
+    },
+    {
+        "Threat Type": "Elevation of Privilege",
+        "Scenario": "An attacker exploits a vulnerability in the Web Application to gain access to the Web Application Config, allowing them to escalate privileges and access the Message Queue with elevated permissions.",
+        "Potential Impact": "The attacker can send or modify messages with elevated privileges, potentially compromising the entire system."
+    },
+    {
+        "Threat Type": "Elevation of Privilege",
+        "Scenario": "An attacker compromises the Background Worker and gains access to the Background Worker Config, allowing them to escalate privileges and perform unauthorized operations on the Database.",
+        "Potential Impact": "The attacker can read, modify, or delete sensitive data in the Database, leading to a complete compromise of data confidentiality and integrity."
+    }
+]
