@@ -1,0 +1,4 @@
+Application Type: Web Application
+Sensitivity Level: Confidential
+Internet-facing: Yes
+Authentication methods: None

@@ -1,0 +1,19 @@
+[
+  {
+    "Category":"Repudiation",
+    "Base":"Attacks against the authentication system may go undetected",
+    "Model":"Error handling in the Java Web Container is inconsistent, and some exceptions result in no logging or only partial logging of the triggering request and user context. Users or attackers can deny having triggered certain errors or failed access attempts, complicating forensic analysis and detection of ongoing attacks.",
+    "overlap":-1,
+    "overlap_pct":-1.0,
+    "bleu":0.7002773917,
+    "rouge":0.0357142857,
+    "entailment":0.0884770826,
+    "contrastive":0.0098678321,
+    "similarity":0.6469541669,
+    "Similarity_SecureBERT2.0-base":0.901935935,
+    "Similarity_AttackGroup-MPNET":0.7385956049,
+    "Similarity_SecureModernBERT-NER":0.6900256872,
+    "Similarity_CTI-BERT":0.6520357132,
+    "Similarity_ATTACK-BERT":0.2521778941
+  }
+]

@@ -1,0 +1,36 @@
+[
+  {
+    "Category":"Information Disclosure",
+    "Base":"Add authentication in all IoTEdge modules.",
+    "Model":"- Enforce TLS-encrypted WebSockets (wss:\/\/) for all inter-module traffic; disable or block any unencrypted ws:\/\/ endpoints at firewall and application levels.<br>- Use mutual TLS to authenticate modules and prevent MITM sniffing or impersonation; restrict CA trust to the IoT Edge PKI where appropriate.<br>- Move inter-module communication off the public LAN onto isolated container networks or a dedicated management VLAN; block direct LAN access to these ports.<br>- Avoid including unnecessary sensitive data in messages (e.g., do not duplicate full frames when only metadata is needed; mask PII where feasible).<br>- Implement network monitoring to detect unencrypted or unexpected traffic patterns carrying video\/scan data over the LAN.",
+    "overlap":-1,
+    "overlap_pct":-1.0,
+    "bleu":0.3484426318,
+    "rouge":0.0338983051,
+    "entailment":0.1009070352,
+    "contrastive":0.0091359466,
+    "similarity":0.6397639751,
+    "Similarity_SecureBERT2.0-base":0.8601968288,
+    "Similarity_AttackGroup-MPNET":0.7248225212,
+    "Similarity_SecureModernBERT-NER":0.7386087179,
+    "Similarity_CTI-BERT":0.6456403732,
+    "Similarity_ATTACK-BERT":0.2295514345
+  },
+  {
+    "Category":"Tampering",
+    "Base":"All services within the Azure Trust Boundary must authenticate all incoming requests, including requests coming from the same network. Proper authorizations should also be applied to prevent unnecessary privileges.",
+    "Model":"- Store secrets in secure mechanisms rather than flat files\/env vars where possible: use Azure Key Vault + managed identities, or IoT Edge module twin with encryption and in-memory retrieval only.<br>- If secrets must be on disk, store them in root-owned, read-only files with minimal permissions (e.g., `600`), and mount them into containers as read-only volumes.<br>- Run each module under a dedicated, non-root OS user; apply least-privilege filesystem ACLs so other processes cannot read or modify their configs.<br>- Make application configuration read-only at runtime (immutable config pattern) for deployed modules; require a redeploy for config changes via a controlled CI\/CD path.<br>- Implement file integrity monitoring (hash-based, or use tools like AIDE\/OSSEC) on configuration directories; alert on changes and maintain tamper-evident logs of who\/what changed configs.<br>- Harden the host (no shell access for non-admins, disable unnecessary services, use AppArmor\/SELinux profiles for containers to restrict filesystem access).",
+    "overlap":-1,
+    "overlap_pct":-1.0,
+    "bleu":0.3059494015,
+    "rouge":0.0518134715,
+    "entailment":0.2159341127,
+    "contrastive":0.0172784328,
+    "similarity":0.7143525183,
+    "Similarity_SecureBERT2.0-base":0.9278610945,
+    "Similarity_AttackGroup-MPNET":0.7341226339,
+    "Similarity_SecureModernBERT-NER":0.8452071548,
+    "Similarity_CTI-BERT":0.76499331,
+    "Similarity_ATTACK-BERT":0.2995783985
+  }
+]

@@ -1,0 +1,36 @@
+[
+  {
+    "Category":"Information Disclosure",
+    "Base":"Unauthorized Access to M2 IoTEdge Module where database secrets are used",
+    "Model":"The WebSocket communication between M1, M2, and M3 on the 'public access LAN' may not be encrypted (i.e., using `ws:\/\/` instead of `wss:\/\/`). An attacker on the LAN can passively sniff this traffic and capture the raw video frames and OCR results. Complete loss of confidentiality for all data processed by the system, including potentially sensitive visual information and text.",
+    "overlap":1,
+    "overlap_pct":0.3333333333,
+    "bleu":0.4392391264,
+    "rouge":0.0555555556,
+    "entailment":0.0552338175,
+    "contrastive":0.0057695061,
+    "similarity":0.6124536529,
+    "Similarity_SecureBERT2.0-base":0.8656318188,
+    "Similarity_AttackGroup-MPNET":0.6599315405,
+    "Similarity_SecureModernBERT-NER":0.7766540647,
+    "Similarity_CTI-BERT":0.7092960477,
+    "Similarity_ATTACK-BERT":0.050754793
+  },
+  {
+    "Category":"Denial of Service",
+    "Base":"Dos attack on all IoTEdge Modules since there is no Authentication",
+    "Model":"An attacker who has stolen an Azure connection string (e.g., for Cognitive Services) can run a script to make an unlimited number of API calls. This will rapidly consume the service's monthly quota or incur a very large bill. Legitimate requests from the IoT device will be throttled or blocked, and the service owner will face a significant financial impact.",
+    "overlap":-1,
+    "overlap_pct":-1.0,
+    "bleu":0.0,
+    "rouge":0.0273972603,
+    "entailment":0.0930291563,
+    "contrastive":0.0183318406,
+    "similarity":0.6612368107,
+    "Similarity_SecureBERT2.0-base":0.886482358,
+    "Similarity_AttackGroup-MPNET":0.648070991,
+    "Similarity_SecureModernBERT-NER":0.7373450398,
+    "Similarity_CTI-BERT":0.6927378178,
+    "Similarity_ATTACK-BERT":0.3415478468
+  }
+]

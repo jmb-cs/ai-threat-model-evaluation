@@ -1,0 +1,19 @@
+[
+  {
+    "Category":"Spoofing",
+    "Base":"Encrypt data between the client and server\/service",
+    "Model":"Generate session tokens using cryptographically secure pseudorandom number generators (CSPRNG); enforce token length > 128 bits; implement automatic token rotation after login, privilege changes, and periodic expiration (short-lived tokens).",
+    "overlap":-1,
+    "overlap_pct":-1,
+    "bleu":0.969094302,
+    "rouge":0.0540540541,
+    "entailment":0.1944506168,
+    "contrastive":0.0198812187,
+    "similarity":0.5482731372,
+    "Similarity_SecureBERT2.0-base":0.9028861523,
+    "Similarity_AttackGroup-MPNET":0.3424082398,
+    "Similarity_SecureModernBERT-NER":0.7141785622,
+    "Similarity_CTI-BERT":0.6026268005,
+    "Similarity_ATTACK-BERT":0.1792659312
+  }
+]

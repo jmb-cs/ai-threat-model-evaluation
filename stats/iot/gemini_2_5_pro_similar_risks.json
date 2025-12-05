@@ -1,0 +1,36 @@
+[
+  {
+    "Category":"Information Disclosure",
+    "Base":"Authenticity",
+    "Model":"6.40 out of 10",
+    "overlap":-1,
+    "overlap_pct":-1,
+    "bleu":0.0,
+    "rouge":0.0,
+    "entailment":0.0991435647,
+    "contrastive":0.0147455335,
+    "similarity":0.3982314646,
+    "Similarity_SecureBERT2.0-base":0.6689238548,
+    "Similarity_AttackGroup-MPNET":0.4470593333,
+    "Similarity_SecureModernBERT-NER":0.3862185478,
+    "Similarity_CTI-BERT":0.2594522834,
+    "Similarity_ATTACK-BERT":0.2295033038
+  },
+  {
+    "Category":"Denial of Service",
+    "Base":"Availability",
+    "Model":"7.40 out of 10",
+    "overlap":-1,
+    "overlap_pct":-1,
+    "bleu":0.0,
+    "rouge":0.0,
+    "entailment":0.08506722,
+    "contrastive":0.0092722476,
+    "similarity":0.3700666904,
+    "Similarity_SecureBERT2.0-base":0.6926659346,
+    "Similarity_AttackGroup-MPNET":0.3841563165,
+    "Similarity_SecureModernBERT-NER":0.5023881197,
+    "Similarity_CTI-BERT":0.141074419,
+    "Similarity_ATTACK-BERT":0.1300486624
+  }
+]

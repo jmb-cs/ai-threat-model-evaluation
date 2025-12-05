@@ -1,0 +1,93 @@
+[
+    {
+        "ID": 0,
+        "Category": "Spoofing",
+        "Threat": "An attacker could impersonate the Web UI by setting up a phishing site that mimics the login page, stealing user credentials through basic authentication without adequate multi-factor verification. Unauthorized access to user accounts leading to identity theft and potential misuse of personally identifiable information stored in the system.",
+        "Mitigation": "Implement phishing-resistant MFA (e.g., FIDO2/WebAuthn); deploy anti-phishing user education campaigns; enforce strict domain-based Message Authentication (SPF/DKIM/DMARC) for email communications.",
+        "Risk": "8.80 out of 10"
+    },
+    {
+        "ID": 1,
+        "Category": "Spoofing",
+        "Threat": "The Web Service could be spoofed by an attacker who intercepts the SSL/TLS handshake to perform a man-in-the-middle attack, especially if certificate validation is not strictly enforced on the client side. Compromised authentication session allowing the attacker to assume user identities and access sensitive customer data.",
+        "Mitigation": "Enforce certificate pinning (via HTTP Public Key Pinning or OS-trusted roots); implement TLS 1.3 with mutual TLS (mTLS) for service-to-service communication; validate server certificates using strict hostname verification on all clients.",
+        "Risk": "7.40 out of 10"
+    },
+    {
+        "ID": 2,
+        "Category": "Spoofing",
+        "Threat": "An attacker could spoof session IDs by predicting or brute-forcing the session management mechanism if it uses weak randomness in generating session tokens. Session hijacking leading to unauthorized access to authenticated user sessions and potential data breaches.",
+        "Mitigation": "Generate session tokens using cryptographically secure pseudorandom number generators (CSPRNG); enforce token length > 128 bits; implement automatic token rotation after login, privilege changes, and periodic expiration (short-lived tokens).",
+        "Risk": "8.00 out of 10"
+    },
+    {
+        "ID": 3,
+        "Category": "Tampering",
+        "Threat": "Attackers could tamper with XML input sent to the Web Service by injecting malicious payloads or altering data fields before encryption if XML validation and sanitization mechanisms are insufficient. Data integrity violations including manipulation of customer data or injection of malicious commands that could lead to further system compromise.",
+        "Mitigation": "Apply strict XML schema validation (XSD) with reject-all-by-default policies; sanitize inputs using OWASP ESAPI; disable external entity processing (XXE) in XML parsers; implement HMAC signing for XML payloads to verify integrity.",
+        "Risk": "7.60 out of 10"
+    },
+    {
+        "ID": 4,
+        "Category": "Tampering",
+        "Threat": "Malicious actors could modify traffic between Web UI and Web Service after SSL/TLS termination if there are configuration weaknesses in HTTPS enforcement. Altered transactions or requests potentially leading to financial fraud or unauthorized actions being performed on behalf of legitimate users.",
+        "Mitigation": "Enforce HSTS (HTTP Strict Transport Security) with max-age \u2265 1 year; terminate TLS at load balancer with end-to-end encryption; implement signed request parameters using JWT with server-side validation; disable HTTP fallback.",
+        "Risk": "7.20 out of 10"
+    },
+    {
+        "ID": 5,
+        "Category": "Tampering",
+        "Threat": "An attacker with access to the EC2 environment could tamper with the Web Service application binaries or configuration files if proper file integrity monitoring and access controls are not in place. Application logic alterations that could introduce backdoors or weaken security controls across the entire system.",
+        "Mitigation": "Deploy AWS GuardDuty for anomaly detection; implement FIM (File Integrity Monitoring) via Amazon Inspector or OSSEC; enforce strict IAM policies with least-privilege access; store configs in AWS Systems Manager Parameter Store with KMS encryption.",
+        "Risk": "7.20 out of 10"
+    },
+    {
+        "ID": 6,
+        "Category": "Repudiation",
+        "Threat": "A malicious insider could perform unauthorized data access or modifications through the Web Service without proper audit logging and then deny having performed the actions. Inability to trace responsibility for data breaches or policy violations due to insufficient logging of critical operations involving personally identifiable information.",
+        "Mitigation": "Implement immutable audit logs (AWS CloudTrail + CloudWatch Logs Insights) with cryptographic hashing; log all PII accesses with user identity, timestamp, IP, and action; enforce dual control for sensitive operations.",
+        "Risk": "6.00 out of 10"
+    },
+    {
+        "ID": 7,
+        "Category": "Repudiation",
+        "Threat": "External attackers could exploit the system to perform fraudulent transactions through the Web UI and deny responsibility without proper transaction logging that captures sufficient context. Disputed transactions leading to financial loss and lack of evidence for forensic investigations or legal proceedings.",
+        "Mitigation": "Capture forensic transaction context (screenshots, device fingerprints, session recordings); store logs in write-once-read-many (WORM) storage; implement blockchain-based transaction ledgers for tamper-evident records.",
+        "Risk": "7.40 out of 10"
+    },
+    {
+        "ID": 8,
+        "Category": "Information Disclosure",
+        "Threat": "Error messages returned by the Web Service could leak sensitive information about the internal system structure, database schema, or stack traces if exceptions are not properly handled. Exposure of system details that could aid attackers in crafting more sophisticated attacks against the application or underlying infrastructure.",
+        "Mitigation": "Implement centralized exception handling with generic error messages; log detailed errors only to secured, access-controlled servers; use OWASP-recommended error code mappings; disable stack traces in production.",
+        "Risk": "8.40 out of 10"
+    },
+    {
+        "ID": 9,
+        "Category": "Information Disclosure",
+        "Threat": "The Web UI implemented with jQuery might inadvertently expose session tokens or sensitive data through client-side storage mechanisms like local storage or URL parameters. Session token theft or exposure of personally identifiable information that could lead to account compromise or privacy violations.",
+        "Mitigation": "Prohibit storage of tokens in URL/localStorage (use HttpOnly, Secure, SameSite=Strict cookies); enforce automatic session token destruction on browser close; implement Content Security Policy (CSP) to block insecure JavaScript APIs.",
+        "Risk": "7.80 out of 10"
+    },
+    {
+        "ID": 10,
+        "Category": "Information Disclosure",
+        "Threat": "Insufficient input validation on XML processing could lead to XML External Entity (XXE) attacks where attackers can read local files including configuration or sensitive data from the server. Direct exposure of confidential data stored on the server, including potentially database credentials or other system secrets.",
+        "Mitigation": "Disable external entities and DTDs in all XML parsers (e.g., set `setFeature(\"http://apache.org/xml/features/disallow-doctype-decl\", true)`); use JSON instead of XML where feasible; isolate XML processing in sandboxed containers.",
+        "Risk": "8.00 out of 10"
+    },
+    {
+        "ID": 11,
+        "Category": "Denial of Service",
+        "Threat": "An attacker could overwhelm the Web Service with malformed XML requests causing excessive resource consumption during parsing, especially if XML validation and size limits are not properly enforced. Service disruption affecting availability of the application for legitimate users and potential business continuity issues.",
+        "Mitigation": "Enforce XML payload size limits (\u2264 100KB); validate XML against strict XSD before parsing; implement parser timeouts (\u2264 5s); use AWS WAF rate-based rules to block XML bomb patterns (e.g., billion laughs attacks).",
+        "Risk": "7.80 out of 10"
+    },
+    {
+        "ID": 12,
+        "Category": "Denial of Service",
+        "Threat": "The Web Service running on EC2 could be targeted with high-volume traffic requests that exhaust available network bandwidth or connection pools. Complete service unavailability preventing legitimate users from accessing the application and processing customer data.",
+        "Mitigation": "Deploy AWS Shield Advanced for DDoS protection; implement auto-scaling groups with connection throttling; enforce request rate limits via API Gateway; use AWS WAF geo-fencing to block high-risk regions.",
+        "Risk": "8.00 out of 10"
+    }
+]
