@@ -1,0 +1,26 @@
+[
+  {
+    "Category":"Information Disclosure",
+    "Base":4,
+    "Model":7,
+    "Base Risk":"Medium",
+    "Model Risk":"6.40 out of 10",
+    "Risk":1
+  },
+  {
+    "Category":"Information Disclosure",
+    "Base":0,
+    "Model":7,
+    "Base Risk":"Critical",
+    "Model Risk":"6.40 out of 10",
+    "Risk":0
+  },
+  {
+    "Category":"Denial of Service",
+    "Base":5,
+    "Model":8,
+    "Base Risk":"Medium",
+    "Model Risk":"7.40 out of 10",
+    "Risk":1
+  }
+]

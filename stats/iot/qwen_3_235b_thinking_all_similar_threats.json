@@ -1,0 +1,67 @@
+[
+  {
+    "Category":"Information Disclosure",
+    "Base":0,
+    "Model":10,
+    "Base Threat":"Uencrypted data can be intercepted in transit",
+    "Model Threat":"Debugging video frames uploaded to Azure Storage contain personally identifiable information from camera feeds Unauthorized access to Azure Storage could expose confidential video footage containing identifiable individuals or sensitive environments",
+    "overlap":-1,
+    "contrastive":0.0416778028,
+    "similarity":0.5946830312,
+    "Similarity_SecureBERT2.0-base":0.8751561642,
+    "Similarity_CTI-BERT":0.6693487763,
+    "Similarity_ATTACK-BERT":0.2395441532
+  },
+  {
+    "Category":"Information Disclosure",
+    "Base":0,
+    "Model":11,
+    "Base Threat":"Uencrypted data can be intercepted in transit",
+    "Model Threat":"WebSocket communications between M1, M2, and M3 lack encryption on the local network Eavesdropping on local network could expose live video streams, translation results, or other sensitive operational data",
+    "overlap":-1,
+    "contrastive":0.0321176052,
+    "similarity":0.7518177827,
+    "Similarity_SecureBERT2.0-base":0.9131982327,
+    "Similarity_CTI-BERT":0.7329226732,
+    "Similarity_ATTACK-BERT":0.6093324423
+  },
+  {
+    "Category":"Information Disclosure",
+    "Base":4,
+    "Model":11,
+    "Base Threat":"Unauthorized Access to M2 IoTEdge Module where database secrets are used",
+    "Model Threat":"WebSocket communications between M1, M2, and M3 lack encryption on the local network Eavesdropping on local network could expose live video streams, translation results, or other sensitive operational data",
+    "overlap":1,
+    "contrastive":0.0357218385,
+    "similarity":0.5977230122,
+    "Similarity_SecureBERT2.0-base":0.8992824554,
+    "Similarity_CTI-BERT":0.7426358461,
+    "Similarity_ATTACK-BERT":0.1512507349
+  },
+  {
+    "Category":"Tampering",
+    "Base":6,
+    "Model":4,
+    "Base Threat":"Application Insights is connected via Connection String which is stored in .env file on the IoTEdge device. Once user gains access to the device, .env file can be read and attacker can tamper the log data.",
+    "Model Threat":"An attacker tampers with telemetry data being sent from EdgeMetricsCollector to Application Insights by injecting falsified data Would corrupt monitoring and analytics data, potentially masking security incidents or causing incorrect system diagnostics",
+    "overlap":1,
+    "contrastive":0.0010400414,
+    "similarity":0.7379177809,
+    "Similarity_SecureBERT2.0-base":0.9102689028,
+    "Similarity_CTI-BERT":0.765340507,
+    "Similarity_ATTACK-BERT":0.5381439328
+  },
+  {
+    "Category":"Denial of Service",
+    "Base":9,
+    "Model":14,
+    "Base Threat":"Azure Cognitive Service connection string is stored in .env file on IoTEdge Device. Once user gains access to the device, .env file can be read and attacker cause DoS attacks on Azure Cognitive Service",
+    "Model Threat":"An attacker floods Azure Cognitive Services with excessive requests through M3 by manipulating the edge device Could incur excessive costs, trigger service throttling, or cause service disruption for legitimate translation requests",
+    "overlap":1,
+    "contrastive":0.0035615563,
+    "similarity":0.7338901957,
+    "Similarity_SecureBERT2.0-base":0.908878088,
+    "Similarity_CTI-BERT":0.7705364227,
+    "Similarity_ATTACK-BERT":0.5222560763
+  }
+]

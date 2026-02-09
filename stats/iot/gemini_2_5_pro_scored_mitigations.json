@@ -1,0 +1,41 @@
+[
+  {
+    "Category":"Information Disclosure",
+    "Base":4,
+    "Model":7,
+    "Base Mitigation":"Add authentication in all IoTEdge modules.",
+    "Model Mitigation":"- Mandate Secure WebSockets (WSS): All inter-module communication must use the `wss:\/\/` protocol. This wraps the WebSocket traffic in TLS, providing strong encryption that prevents any network eavesdropper from viewing the confidential data being transmitted between modules.",
+    "overlap":-1,
+    "contrastive":-0.0014222413,
+    "similarity":0.5665336649,
+    "Similarity_SecureBERT2.0-base":0.8738430738,
+    "Similarity_CTI-BERT":0.6168142557,
+    "Similarity_ATTACK-BERT":0.208943665
+  },
+  {
+    "Category":"Information Disclosure",
+    "Base":0,
+    "Model":7,
+    "Base Mitigation":"All products and services must encrypt data in transit using approved cryptographic protocols and algorithms. Use TLS to encrypt all HTTP-based network traffic. Use other mechanisms, such as IPSec, to encrypt non-HTTP network traffic that contains customer or confidential data. Applies to data flow from browser to IoTEdge modules.",
+    "Model Mitigation":"- Mandate Secure WebSockets (WSS): All inter-module communication must use the `wss:\/\/` protocol. This wraps the WebSocket traffic in TLS, providing strong encryption that prevents any network eavesdropper from viewing the confidential data being transmitted between modules.",
+    "overlap":0,
+    "contrastive":-0.0518158078,
+    "similarity":0.8457589348,
+    "Similarity_SecureBERT2.0-base":0.9517525434,
+    "Similarity_CTI-BERT":0.8578010798,
+    "Similarity_ATTACK-BERT":0.7277231812
+  },
+  {
+    "Category":"Denial of Service",
+    "Base":5,
+    "Model":8,
+    "Base Mitigation":"All services deployed as IoTEdge modules must use authentication.",
+    "Model Mitigation":"- Set Billing Alerts: Configure budget alerts in Azure Cost Management to send notifications when spending on the service or subscription exceeds a defined threshold. This provides early detection of financial abuse.<br>- Use Quota-Limited Service Tiers: Select a pricing tier for the Azure service that has built-in rate or transaction limits that align with expected legitimate usage.<br>- Eliminate Persistent Secrets: Prioritize the use of Managed Identity or short-lived, narrowly-scoped SAS tokens over static connection strings. This drastically reduces the window of opportunity for an attacker to abuse a stolen credential.",
+    "overlap":-1,
+    "contrastive":0.0242171288,
+    "similarity":0.6364151537,
+    "Similarity_SecureBERT2.0-base":0.8617029786,
+    "Similarity_CTI-BERT":0.685326159,
+    "Similarity_ATTACK-BERT":0.3622163236
+  }
+]

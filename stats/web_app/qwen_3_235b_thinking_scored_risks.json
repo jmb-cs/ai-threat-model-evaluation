@@ -1,0 +1,250 @@
+[
+  {
+    "Category":"Information Disclosure",
+    "Base":32,
+    "Model":10,
+    "Base Risk":"High",
+    "Model Risk":"8.00 out of 10",
+    "Risk":1
+  },
+  {
+    "Category":"Information Disclosure",
+    "Base":40,
+    "Model":10,
+    "Base Risk":"Critical",
+    "Model Risk":"8.00 out of 10",
+    "Risk":0
+  },
+  {
+    "Category":"Information Disclosure",
+    "Base":36,
+    "Model":10,
+    "Base Risk":"Critical",
+    "Model Risk":"8.00 out of 10",
+    "Risk":0
+  },
+  {
+    "Category":"Information Disclosure",
+    "Base":39,
+    "Model":10,
+    "Base Risk":"Critical",
+    "Model Risk":"8.00 out of 10",
+    "Risk":0
+  },
+  {
+    "Category":"Information Disclosure",
+    "Base":17,
+    "Model":10,
+    "Base Risk":"High",
+    "Model Risk":"8.00 out of 10",
+    "Risk":1
+  },
+  {
+    "Category":"Information Disclosure",
+    "Base":44,
+    "Model":10,
+    "Base Risk":"Critical",
+    "Model Risk":"8.00 out of 10",
+    "Risk":0
+  },
+  {
+    "Category":"Information Disclosure",
+    "Base":16,
+    "Model":10,
+    "Base Risk":"High",
+    "Model Risk":"8.00 out of 10",
+    "Risk":1
+  },
+  {
+    "Category":"Information Disclosure",
+    "Base":35,
+    "Model":10,
+    "Base Risk":"Critical",
+    "Model Risk":"8.00 out of 10",
+    "Risk":0
+  },
+  {
+    "Category":"Information Disclosure",
+    "Base":26,
+    "Model":10,
+    "Base Risk":"Medium",
+    "Model Risk":"8.00 out of 10",
+    "Risk":1
+  },
+  {
+    "Category":"Spoofing",
+    "Base":12,
+    "Model":2,
+    "Base Risk":"High",
+    "Model Risk":"8.00 out of 10",
+    "Risk":1
+  },
+  {
+    "Category":"Information Disclosure",
+    "Base":8,
+    "Model":10,
+    "Base Risk":"High",
+    "Model Risk":"8.00 out of 10",
+    "Risk":1
+  },
+  {
+    "Category":"Information Disclosure",
+    "Base":31,
+    "Model":10,
+    "Base Risk":"High",
+    "Model Risk":"8.00 out of 10",
+    "Risk":1
+  },
+  {
+    "Category":"Information Disclosure",
+    "Base":7,
+    "Model":10,
+    "Base Risk":"High",
+    "Model Risk":"8.00 out of 10",
+    "Risk":1
+  },
+  {
+    "Category":"Spoofing",
+    "Base":38,
+    "Model":0,
+    "Base Risk":"Critical",
+    "Model Risk":"8.80 out of 10",
+    "Risk":0
+  },
+  {
+    "Category":"Information Disclosure",
+    "Base":0,
+    "Model":10,
+    "Base Risk":"Medium",
+    "Model Risk":"8.00 out of 10",
+    "Risk":1
+  },
+  {
+    "Category":"Information Disclosure",
+    "Base":37,
+    "Model":10,
+    "Base Risk":"Very Low",
+    "Model Risk":"8.00 out of 10",
+    "Risk":1
+  },
+  {
+    "Category":"Information Disclosure",
+    "Base":10,
+    "Model":10,
+    "Base Risk":"Medium",
+    "Model Risk":"8.00 out of 10",
+    "Risk":1
+  },
+  {
+    "Category":"Information Disclosure",
+    "Base":20,
+    "Model":10,
+    "Base Risk":"Medium",
+    "Model Risk":"8.00 out of 10",
+    "Risk":1
+  },
+  {
+    "Category":"Information Disclosure",
+    "Base":23,
+    "Model":10,
+    "Base Risk":"Medium",
+    "Model Risk":"8.00 out of 10",
+    "Risk":1
+  },
+  {
+    "Category":"Tampering",
+    "Base":3,
+    "Model":3,
+    "Base Risk":"High",
+    "Model Risk":"7.60 out of 10",
+    "Risk":1
+  },
+  {
+    "Category":"Spoofing",
+    "Base":48,
+    "Model":0,
+    "Base Risk":"Critical",
+    "Model Risk":"8.80 out of 10",
+    "Risk":0
+  },
+  {
+    "Category":"Tampering",
+    "Base":28,
+    "Model":3,
+    "Base Risk":"Critical",
+    "Model Risk":"7.60 out of 10",
+    "Risk":0
+  },
+  {
+    "Category":"Tampering",
+    "Base":34,
+    "Model":3,
+    "Base Risk":"Medium",
+    "Model Risk":"7.60 out of 10",
+    "Risk":1
+  },
+  {
+    "Category":"Repudiation",
+    "Base":24,
+    "Model":6,
+    "Base Risk":"Medium",
+    "Model Risk":"6.00 out of 10",
+    "Risk":1
+  },
+  {
+    "Category":"Tampering",
+    "Base":47,
+    "Model":3,
+    "Base Risk":"High",
+    "Model Risk":"7.60 out of 10",
+    "Risk":1
+  },
+  {
+    "Category":"Tampering",
+    "Base":30,
+    "Model":3,
+    "Base Risk":"High",
+    "Model Risk":"7.60 out of 10",
+    "Risk":1
+  },
+  {
+    "Category":"Tampering",
+    "Base":49,
+    "Model":4,
+    "Base Risk":"Critical",
+    "Model Risk":"7.20 out of 10",
+    "Risk":0
+  },
+  {
+    "Category":"Tampering",
+    "Base":33,
+    "Model":3,
+    "Base Risk":"Medium",
+    "Model Risk":"7.60 out of 10",
+    "Risk":1
+  },
+  {
+    "Category":"Spoofing",
+    "Base":45,
+    "Model":0,
+    "Base Risk":"High",
+    "Model Risk":"8.80 out of 10",
+    "Risk":1
+  },
+  {
+    "Category":"Tampering",
+    "Base":29,
+    "Model":3,
+    "Base Risk":"High",
+    "Model Risk":"7.60 out of 10",
+    "Risk":1
+  },
+  {
+    "Category":"Information Disclosure",
+    "Base":21,
+    "Model":9,
+    "Base Risk":"Medium",
+    "Model Risk":"7.80 out of 10",
+    "Risk":1
+  }
+]
