@@ -1,0 +1,15 @@
+[
+  {
+    "Category":"Denial of Service",
+    "Base":5,
+    "Model":8,
+    "Base Mitigation":"All services deployed as IoTEdge modules must use authentication.",
+    "Model Mitigation":"- Set Billing Alerts: Configure budget alerts in Azure Cost Management to send notifications when spending on the service or subscription exceeds a defined threshold. This provides early detection of financial abuse.<br>- Use Quota-Limited Service Tiers: Select a pricing tier for the Azure service that has built-in rate or transaction limits that align with expected legitimate usage.<br>- Eliminate Persistent Secrets: Prioritize the use of Managed Identity or short-lived, narrowly-scoped SAS tokens over static connection strings. This drastically reduces the window of opportunity for an attacker to abuse a stolen credential.",
+    "overlap":-1,
+    "contrastive":0.0242171288,
+    "similarity":0.6364151537,
+    "Similarity_SecureBERT2.0-base":0.8617029786,
+    "Similarity_CTI-BERT":0.685326159,
+    "Similarity_ATTACK-BERT":0.3622163236
+  }
+]

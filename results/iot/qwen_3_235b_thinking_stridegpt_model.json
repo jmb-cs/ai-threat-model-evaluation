@@ -1,0 +1,114 @@
+[
+    {
+        "ID": 0,
+        "Category": "Spoofing",
+        "Threat": "An attacker spoofs the identity of the USB Video Camera to send malicious video frames to M3, which then get processed by downstream modules as legitimate input False inputs could lead to incorrect translation results, potentially causing malicious audio output or system malfunction without detection",
+        "Mitigation": "\u2022 Enforce USB device authorization via Linux kernel-level whitelisting (e.g., `usbguard` rules based on VID/PID)<br>\u2022 Implement frame-level cryptographic signing at the camera firmware level (if hardware supports it) with keys stored in TPM<br>\u2022 Validate frame integrity in M3 using hash-based message authentication codes (HMAC) with rotating keys",
+        "Risk": "6.80 out of 10"
+    },
+    {
+        "ID": 1,
+        "Category": "Spoofing",
+        "Threat": "An attacker spoofs the identity of M1 to intercept browser requests on the local LAN, conducting a man-in-the-middle attack against legitimate user sessions Session hijacking could occur, allowing the attacker to view and manipulate live streams and potentially inject malicious content into the user's session",
+        "Mitigation": "\u2022 Implement mutual TLS (mTLS) for all browser-M1 communications with client certificates pinned to device identities<br>\u2022 Configure strict DNSSEC validation for local LAN resolution<br>\u2022 Enforce HTTP Strict Transport Security (HSTS) with `max-age=31536000` and includeSubDomains directive",
+        "Risk": "7.40 out of 10"
+    },
+    {
+        "ID": 2,
+        "Category": "Spoofing",
+        "Threat": "An attacker spoofs Azure Cognitive Services endpoint to intercept OCR and Text-to-Speech requests from M3 Malicious actor could manipulate translation results, inject harmful content into audio output, or steal sensitive information being processed",
+        "Mitigation": "\u2022 Use Azure Private Link for Cognitive Services to keep traffic within Azure backbone<br>\u2022 Implement certificate pinning in M3 against Azure's root CA certificates<br>\u2022 Validate endpoint certificates using `X509Chain.Build()` with explicit trusted issuer constraints in .NET code",
+        "Risk": "7.60 out of 10"
+    },
+    {
+        "ID": 3,
+        "Category": "Tampering",
+        "Threat": "An attacker intercepts and modifies WebSocket communications between M1, M2, and M3 on the local network Could alter live stream data, manipulate order scanning results, or inject malicious instructions between modules without detection",
+        "Mitigation": "\u2022 Enforce WebSocket Secure (wss://) with TLS 1.3 and require mutual authentication between modules<br>\u2022 Apply per-message authenticity via HMAC-SHA256 using ephemeral keys rotated hourly<br>\u2022 Segment module communications via VLANs with 802.1X port security",
+        "Risk": "7.60 out of 10"
+    },
+    {
+        "ID": 4,
+        "Category": "Tampering",
+        "Threat": "An attacker tampers with telemetry data being sent from EdgeMetricsCollector to Application Insights by injecting falsified data Would corrupt monitoring and analytics data, potentially masking security incidents or causing incorrect system diagnostics",
+        "Mitigation": "\u2022 Digitally sign telemetry payloads using ECDSA keys stored in Azure IoT Edge Device Provisioning Service<br>\u2022 Implement schema validation at ingestion point via Azure Event Grid filters<br>\u2022 Configure Application Insights ingestion-time sampling with anomaly detection thresholds",
+        "Risk": "7.00 out of 10"
+    },
+    {
+        "ID": 5,
+        "Category": "Tampering",
+        "Threat": "An attacker tampers with video frames stored in Azure Storage that were uploaded by M2 for debugging purposes Corrupted debug data could lead to incorrect troubleshooting, potentially hiding security vulnerabilities or system issues",
+        "Mitigation": "\u2022 Enable Azure Blob Immutable Storage with legal hold policies for debug containers<br>\u2022 Calculate and store SHA-256 hashes of original frames in Azure Key Vault<br>\u2022 Configure storage accounts with blob versioning and container-level WORM retention policies",
+        "Risk": "6.60 out of 10"
+    },
+    {
+        "ID": 6,
+        "Category": "Repudiation",
+        "Threat": "A malicious insider alters or deletes telemetry data sent to Application Insights after performing unauthorized actions on the system Would eliminate audit trails needed to investigate security incidents or determine responsibility for malicious actions",
+        "Mitigation": "\u2022 Implement write-once-read-many (WORM) compliance via Azure Storage Time-Based Retention Policies<br>\u2022 Deploy dual-write architecture sending copies to isolated SIEM system<br>\u2022 Enable Azure Monitor diagnostic settings with direct streaming to Log Analytics workspace",
+        "Risk": "6.40 out of 10"
+    },
+    {
+        "ID": 7,
+        "Category": "Repudiation",
+        "Threat": "An attacker who gained access to M1 performs unauthorized operations via browser interface but the system lacks sufficient transaction logging Would make it impossible to attribute actions to specific users or identify the source of malicious activity after the fact",
+        "Mitigation": "\u2022 Instrument all user actions with Azure Application Insights custom events including client IP, device fingerprint, and module context<br>\u2022 Configure Azure IoT Edge Runtime audit logs with 180-day retention in secured Log Analytics workspace<br>\u2022 Implement session recording via Azure Video Analyzer for critical operations",
+        "Risk": "7.60 out of 10"
+    },
+    {
+        "ID": 8,
+        "Category": "Repudiation",
+        "Threat": "An external attacker tampers with logs sent to Azure Monitor by modifying timestamps or content during transmission Would compromise the integrity of security logs, making forensic analysis impossible and allowing attacks to go undetected",
+        "Mitigation": "\u2022 Encrypt logs in transit using TLS 1.3 with mutual authentication<br>\u2022 Apply log integrity validation via Azure Monitor's Content Hash verification<br>\u2022 Configure Azure Log Analytics agent with `-UseCompression` and `-UseSharedKeyAuthentication` for payload integrity",
+        "Risk": "7.20 out of 10"
+    },
+    {
+        "ID": 9,
+        "Category": "Information Disclosure",
+        "Threat": "Connection strings for Azure services are exposed through insecure GitHub secrets management or CI/CD pipeline artifacts Complete compromise of Azure Storage, Application Insights, and Cognitive Services, allowing full data exfiltration and service abuse",
+        "Mitigation": "\u2022 Replace all connection strings with Azure Managed Identities for module authentication<br>\u2022 Integrate GitHub Actions with Azure Key Vault via OIDC federation<br>\u2022 Implement pre-commit hooks scanning for Azure secrets using Trufflehog",
+        "Risk": "8.20 out of 10"
+    },
+    {
+        "ID": 10,
+        "Category": "Information Disclosure",
+        "Threat": "Debugging video frames uploaded to Azure Storage contain personally identifiable information from camera feeds Unauthorized access to Azure Storage could expose confidential video footage containing identifiable individuals or sensitive environments",
+        "Mitigation": "\u2022 Deploy automatic PII redaction in M2 using Azure Video Analyzer for Media prior to upload<br>\u2022 Configure Azure Storage container with double encryption (Microsoft-managed + customer-managed keys)<br>\u2022 Implement Azure Policy to block PII-containing blobs via Content Moderation API integration",
+        "Risk": "7.20 out of 10"
+    },
+    {
+        "ID": 11,
+        "Category": "Information Disclosure",
+        "Threat": "WebSocket communications between M1, M2, and M3 lack encryption on the local network Eavesdropping on local network could expose live video streams, translation results, or other sensitive operational data",
+        "Mitigation": "\u2022 Enforce mandatory TLS 1.3 for all inter-module communications using Azure IoT Edge routing<br>\u2022 Configure network-level IPSec tunnels between edge device modules<br>\u2022 Implement WebSocket subprotocol negotiation requiring `permessage-deflate` compression",
+        "Risk": "7.80 out of 10"
+    },
+    {
+        "ID": 12,
+        "Category": "Denial of Service",
+        "Threat": "An attacker floods M1's HTTP endpoint with excessive requests from the browser interface Could overwhelm the IoT Edge device, disrupting live video processing and translation services for legitimate users",
+        "Mitigation": "\u2022 Deploy Azure Front Door with WAF rate limiting (5 requests/sec per client IP)<br>\u2022 Configure IoT Edge `minReplicas=2` with automatic scaling based on CPU thresholds<br>\u2022 Implement request funneling via Azure API Management with JWT validation",
+        "Risk": "7.60 out of 10"
+    },
+    {
+        "ID": 13,
+        "Category": "Denial of Service",
+        "Threat": "An attacker sends specially crafted video frames via the USB Camera interface that cause resource exhaustion in M3 processing Could crash the video processing pipeline, disrupting the entire system's functionality until manual intervention occurs",
+        "Mitigation": "\u2022 Enforce frame size/resolution limits in M3 (e.g., max 1080p at 30fps)<br>\u2022 Implement sandboxed frame processing using container resource constraints (CPU/memory limits)<br>\u2022 Deploy runtime anomaly detection via Azure Security Center's container monitoring",
+        "Risk": "6.80 out of 10"
+    },
+    {
+        "ID": 14,
+        "Category": "Denial of Service",
+        "Threat": "An attacker floods Azure Cognitive Services with excessive requests through M3 by manipulating the edge device Could incur excessive costs, trigger service throttling, or cause service disruption for legitimate translation requests",
+        "Mitigation": "\u2022 Configure Cognitive Services resource with strict quota limits (requests/minute)<br>\u2022 Implement request queuing with exponential backoff in M3<br>\u2022 Deploy Azure API Management policies with client-throttling based on Edge device identity",
+        "Risk": "7.20 out of 10"
+    },
+    {
+        "ID": 15,
+        "Category": "Elevation of Privilege",
+        "Threat": "An attacker exploits vulnerabilities in M1 to gain shell access to the IoT Edge device and then escalate privileges to control EdgeRuntime Full compromise of the IoT Edge device, allowing control over all modules and potential lateral movement to Azure services",
+        "Mitigation": "\u2022 Harden OS via CIS benchmarks for Azure IoT Edge Linux devices<br>\u2022 Run modules in gMSA (Group Managed Service Accounts) with least privilege<br>\u2022 Enable runtime protection via Falco with custom rules for edge module privilege escalation",
+        "Risk": "7.40 out of 10"
+    }
+]

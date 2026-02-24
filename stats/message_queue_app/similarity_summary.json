@@ -1,0 +1,26 @@
+{
+  "gpt_5_1": {
+    "threats": 13,
+    "total_similar_pairs": 31,
+    "mitigations": 7,
+    "risk_same": 0,
+    "risk_more": 13,
+    "risk_less": 0
+  },
+  "gemini_2_5_pro": {
+    "threats": 9,
+    "total_similar_pairs": 14,
+    "mitigations": 2,
+    "risk_same": 0,
+    "risk_more": 9,
+    "risk_less": 0
+  },
+  "qwen_3_235b_thinking": {
+    "threats": 13,
+    "total_similar_pairs": 36,
+    "mitigations": 8,
+    "risk_same": 0,
+    "risk_more": 13,
+    "risk_less": 0
+  }
+}

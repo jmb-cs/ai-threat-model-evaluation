@@ -1,3 +1,12 @@
-numpy==2.2.5
-openai==1.78.0
-pandas==2.2.3
+numpy
+openai
+pandas
+nltk
+sacrebleu
+rouge-score
+sentence-transformers
+bert-score
+matplotlib
+data-flow-diagram
+setuptools
+graphviz

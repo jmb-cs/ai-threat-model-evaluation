@@ -1,0 +1,15 @@
+[
+  {
+    "Category":"Tampering",
+    "Base":6,
+    "Model":4,
+    "Base Mitigation":"All services within the Azure Trust Boundary must authenticate all incoming requests, including requests coming from the same network. Proper authorizations should also be applied to prevent unnecessary privileges.",
+    "Model Mitigation":"\u2022 Digitally sign telemetry payloads using ECDSA keys stored in Azure IoT Edge Device Provisioning Service<br>\u2022 Implement schema validation at ingestion point via Azure Event Grid filters<br>\u2022 Configure Application Insights ingestion-time sampling with anomaly detection thresholds",
+    "overlap":-1,
+    "contrastive":0.0024426579,
+    "similarity":0.6609264811,
+    "Similarity_SecureBERT2.0-base":0.900944829,
+    "Similarity_CTI-BERT":0.7449764609,
+    "Similarity_ATTACK-BERT":0.3368581533
+  }
+]

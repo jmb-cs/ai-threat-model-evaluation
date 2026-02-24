@@ -1,0 +1,67 @@
+[
+  {
+    "Category":"Spoofing",
+    "Base":8,
+    "Model":3,
+    "Base Mitigation":"All services within the Azure Trust Boundary must authenticate all incoming requests, including requests coming from the same network. Proper authorizations should also be applied to prevent unnecessary privileges.",
+    "Model Mitigation":"- Use per-device X.509 certificates or TPM-based hardware attestation with Azure IoT Hub \/ DPS; avoid long-lived shared keys or generic credentials.<br>- Apply strict RBAC in Azure for IoT Hub: only a small set of admin identities can create or modify device registrations; use just-in-time privileged access and MFA.<br>- Regularly rotate device\/module credentials and revoke compromised identities via IoT Hub; automate rotation through policy where possible.<br>- Enable Azure Activity Logs and alerts for new device registrations, changes to device identities, or unusual patterns of registration activity.<br>- Use IoT Hub device twins and tags to validate expected properties and location of devices; alert when a \u201cdevice\u201d appears in unexpected regions or networks.<br>- For downstream systems (e.g., Application Insights consumers), perform plausibility checking on telemetry (e.g., impossible timestamps or configuration) to detect fake\/rogue devices.",
+    "overlap":-1,
+    "contrastive":-0.0008375794,
+    "similarity":0.7140039603,
+    "Similarity_SecureBERT2.0-base":0.9379951954,
+    "Similarity_CTI-BERT":0.8088421822,
+    "Similarity_ATTACK-BERT":0.3951745033
+  },
+  {
+    "Category":"Tampering",
+    "Base":6,
+    "Model":7,
+    "Base Mitigation":"All services within the Azure Trust Boundary must authenticate all incoming requests, including requests coming from the same network. Proper authorizations should also be applied to prevent unnecessary privileges.",
+    "Model Mitigation":"- Use a dedicated, minimal telemetry agent (sidecar or host-level) that collects metrics\/logs from modules and forwards them; limit direct write access to monitoring backends from application code where possible.<br>- Where feasible, cryptographically sign critical telemetry at the originating module with a private key stored in a secure store, and validate signatures in downstream analytics to detect tampering.<br>- Correlate Application Insights data with independent data sources (e.g., IoT Hub logs, OS logs, network device logs) to detect inconsistencies indicative of manipulation.<br>- Implement anomaly detection rules in Azure Monitor \/ SIEM that look for sudden telemetry \u201csilence\u201d or unnaturally perfect\/flat metrics that may signal suppression or fabrication.<br>- Enforce RBAC on telemetry configuration so compromised modules cannot disable or redirect logging without leaving strong audit traces.",
+    "overlap":-1,
+    "contrastive":-0.0131144822,
+    "similarity":0.6338227689,
+    "Similarity_SecureBERT2.0-base":0.9175744653,
+    "Similarity_CTI-BERT":0.7988243103,
+    "Similarity_ATTACK-BERT":0.1850695312
+  },
+  {
+    "Category":"Information Disclosure",
+    "Base":4,
+    "Model":13,
+    "Base Mitigation":"Add authentication in all IoTEdge modules.",
+    "Model Mitigation":"- Enforce TLS-encrypted WebSockets (wss:\/\/) for all inter-module traffic; disable or block any unencrypted ws:\/\/ endpoints at firewall and application levels.<br>- Use mutual TLS to authenticate modules and prevent MITM sniffing or impersonation; restrict CA trust to the IoT Edge PKI where appropriate.<br>- Move inter-module communication off the public LAN onto isolated container networks or a dedicated management VLAN; block direct LAN access to these ports.<br>- Avoid including unnecessary sensitive data in messages (e.g., do not duplicate full frames when only metadata is needed; mask PII where feasible).<br>- Implement network monitoring to detect unencrypted or unexpected traffic patterns carrying video\/scan data over the LAN.",
+    "overlap":-1,
+    "contrastive":0.0091359466,
+    "similarity":0.5784628789,
+    "Similarity_SecureBERT2.0-base":0.8601968288,
+    "Similarity_CTI-BERT":0.6456403732,
+    "Similarity_ATTACK-BERT":0.2295514345
+  },
+  {
+    "Category":"Information Disclosure",
+    "Base":0,
+    "Model":13,
+    "Base Mitigation":"All products and services must encrypt data in transit using approved cryptographic protocols and algorithms. Use TLS to encrypt all HTTP-based network traffic. Use other mechanisms, such as IPSec, to encrypt non-HTTP network traffic that contains customer or confidential data. Applies to data flow from browser to IoTEdge modules.",
+    "Model Mitigation":"- Enforce TLS-encrypted WebSockets (wss:\/\/) for all inter-module traffic; disable or block any unencrypted ws:\/\/ endpoints at firewall and application levels.<br>- Use mutual TLS to authenticate modules and prevent MITM sniffing or impersonation; restrict CA trust to the IoT Edge PKI where appropriate.<br>- Move inter-module communication off the public LAN onto isolated container networks or a dedicated management VLAN; block direct LAN access to these ports.<br>- Avoid including unnecessary sensitive data in messages (e.g., do not duplicate full frames when only metadata is needed; mask PII where feasible).<br>- Implement network monitoring to detect unencrypted or unexpected traffic patterns carrying video\/scan data over the LAN.",
+    "overlap":0,
+    "contrastive":0.0014179945,
+    "similarity":0.8214980761,
+    "Similarity_SecureBERT2.0-base":0.96359694,
+    "Similarity_CTI-BERT":0.8684580922,
+    "Similarity_ATTACK-BERT":0.6324391961
+  },
+  {
+    "Category":"Denial of Service",
+    "Base":5,
+    "Model":16,
+    "Base Mitigation":"All services deployed as IoTEdge modules must use authentication.",
+    "Model Mitigation":"- Place M1 behind a lightweight reverse proxy or API gateway with built-in rate limiting, connection throttling, and per-IP\/identity quotas.<br>- Implement application-level rate limiting and backpressure in M1 (e.g., reject or defer requests once concurrency thresholds are reached) to preserve some capacity for legitimate users.<br>- Use network-level protections: host firewall rules, local WAF on the gateway, and segmentation so that only specific subnets or devices can reach M1\u2019s endpoint.<br>- Introduce separate priority queues for critical operations so low-priority traffic cannot starve essential processing.<br>- Monitor request volumes and patterns; automatically block or blacklist IPs exhibiting clear DoS behavior, while ensuring whitelists for key operational systems.",
+    "overlap":-1,
+    "contrastive":0.0784395039,
+    "similarity":0.5422482615,
+    "Similarity_SecureBERT2.0-base":0.8727272749,
+    "Similarity_CTI-BERT":0.6837072372,
+    "Similarity_ATTACK-BERT":0.0703102723
+  }
+]

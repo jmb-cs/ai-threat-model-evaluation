@@ -1,0 +1,28 @@
+[
+  {
+    "Category":"Information Disclosure",
+    "Base":4,
+    "Model":13,
+    "Base Mitigation":"Add authentication in all IoTEdge modules.",
+    "Model Mitigation":"- Enforce TLS-encrypted WebSockets (wss:\/\/) for all inter-module traffic; disable or block any unencrypted ws:\/\/ endpoints at firewall and application levels.<br>- Use mutual TLS to authenticate modules and prevent MITM sniffing or impersonation; restrict CA trust to the IoT Edge PKI where appropriate.<br>- Move inter-module communication off the public LAN onto isolated container networks or a dedicated management VLAN; block direct LAN access to these ports.<br>- Avoid including unnecessary sensitive data in messages (e.g., do not duplicate full frames when only metadata is needed; mask PII where feasible).<br>- Implement network monitoring to detect unencrypted or unexpected traffic patterns carrying video\/scan data over the LAN.",
+    "overlap":-1,
+    "contrastive":0.0091359466,
+    "similarity":0.5784628789,
+    "Similarity_SecureBERT2.0-base":0.8601968288,
+    "Similarity_CTI-BERT":0.6456403732,
+    "Similarity_ATTACK-BERT":0.2295514345
+  },
+  {
+    "Category":"Denial of Service",
+    "Base":5,
+    "Model":16,
+    "Base Mitigation":"All services deployed as IoTEdge modules must use authentication.",
+    "Model Mitigation":"- Place M1 behind a lightweight reverse proxy or API gateway with built-in rate limiting, connection throttling, and per-IP\/identity quotas.<br>- Implement application-level rate limiting and backpressure in M1 (e.g., reject or defer requests once concurrency thresholds are reached) to preserve some capacity for legitimate users.<br>- Use network-level protections: host firewall rules, local WAF on the gateway, and segmentation so that only specific subnets or devices can reach M1\u2019s endpoint.<br>- Introduce separate priority queues for critical operations so low-priority traffic cannot starve essential processing.<br>- Monitor request volumes and patterns; automatically block or blacklist IPs exhibiting clear DoS behavior, while ensuring whitelists for key operational systems.",
+    "overlap":-1,
+    "contrastive":0.0784395039,
+    "similarity":0.5422482615,
+    "Similarity_SecureBERT2.0-base":0.8727272749,
+    "Similarity_CTI-BERT":0.6837072372,
+    "Similarity_ATTACK-BERT":0.0703102723
+  }
+]

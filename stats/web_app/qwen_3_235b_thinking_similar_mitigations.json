@@ -1,0 +1,28 @@
+[
+  {
+    "Category":"Repudiation",
+    "Base":24,
+    "Model":6,
+    "Base Mitigation":"Log details of user actions within the system. Use a synchronised time source.",
+    "Model Mitigation":"Implement immutable audit logs (AWS CloudTrail + CloudWatch Logs Insights) with cryptographic hashing; log all PII accesses with user identity, timestamp, IP, and action; enforce dual control for sensitive operations.",
+    "overlap":-1,
+    "contrastive":0.0011046827,
+    "similarity":0.7190243006,
+    "Similarity_SecureBERT2.0-base":0.8953204751,
+    "Similarity_CTI-BERT":0.7260116935,
+    "Similarity_ATTACK-BERT":0.5357407331
+  },
+  {
+    "Category":"Spoofing",
+    "Base":45,
+    "Model":0,
+    "Base Mitigation":"Encrypt data between the client and server\/service",
+    "Model Mitigation":"Implement phishing-resistant MFA (e.g., FIDO2\/WebAuthn); deploy anti-phishing user education campaigns; enforce strict domain-based Message Authentication (SPF\/DKIM\/DMARC) for email communications.",
+    "overlap":-1,
+    "contrastive":0.030724436,
+    "similarity":0.5237965435,
+    "Similarity_SecureBERT2.0-base":0.8593135476,
+    "Similarity_CTI-BERT":0.6376159191,
+    "Similarity_ATTACK-BERT":0.0744601637
+  }
+]

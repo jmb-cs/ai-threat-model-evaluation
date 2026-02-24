@@ -1,0 +1,106 @@
+[
+  {
+    "Category":"Information Disclosure",
+    "Base":0,
+    "Model":14,
+    "Base Risk":"High",
+    "Model Risk":"8.20 out of 10",
+    "Risk":1
+  },
+  {
+    "Category":"Information Disclosure",
+    "Base":4,
+    "Model":13,
+    "Base Risk":"Low",
+    "Model Risk":"7.80 out of 10",
+    "Risk":1
+  },
+  {
+    "Category":"Information Disclosure",
+    "Base":3,
+    "Model":13,
+    "Base Risk":"High",
+    "Model Risk":"7.80 out of 10",
+    "Risk":1
+  },
+  {
+    "Category":"Tampering",
+    "Base":5,
+    "Model":5,
+    "Base Risk":"Medium",
+    "Model Risk":"6.80 out of 10",
+    "Risk":1
+  },
+  {
+    "Category":"Spoofing",
+    "Base":6,
+    "Model":2,
+    "Base Risk":"High",
+    "Model Risk":"7.40 out of 10",
+    "Risk":1
+  },
+  {
+    "Category":"Information Disclosure",
+    "Base":2,
+    "Model":15,
+    "Base Risk":"Medium",
+    "Model Risk":"8.60 out of 10",
+    "Risk":1
+  },
+  {
+    "Category":"Denial of Service",
+    "Base":8,
+    "Model":18,
+    "Base Risk":"Medium",
+    "Model Risk":"7.20 out of 10",
+    "Risk":1
+  },
+  {
+    "Category":"Denial of Service",
+    "Base":7,
+    "Model":18,
+    "Base Risk":"Medium",
+    "Model Risk":"7.20 out of 10",
+    "Risk":1
+  },
+  {
+    "Category":"Information Disclosure",
+    "Base":12,
+    "Model":15,
+    "Base Risk":"Low",
+    "Model Risk":"8.60 out of 10",
+    "Risk":1
+  },
+  {
+    "Category":"Information Disclosure",
+    "Base":1,
+    "Model":14,
+    "Base Risk":"High",
+    "Model Risk":"8.20 out of 10",
+    "Risk":1
+  },
+  {
+    "Category":"Information Disclosure",
+    "Base":10,
+    "Model":12,
+    "Base Risk":"High",
+    "Model Risk":"8.00 out of 10",
+    "Risk":1
+  },
+  {
+    "Category":"Information Disclosure",
+    "Base":11,
+    "Model":12,
+    "Base Risk":"High",
+    "Model Risk":"8.00 out of 10",
+    "Risk":1
+  },
+  {
+    "Category":"Information Disclosure",
+    "Base":9,
+    "Model":12,
+    "Base Risk":"High",
+    "Model Risk":"8.00 out of 10",
+    "Risk":1
+  }
+]

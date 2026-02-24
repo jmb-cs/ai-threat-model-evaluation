@@ -1,0 +1,28 @@
+[
+  {
+    "Category":"Spoofing",
+    "Base":6,
+    "Model":1,
+    "Base Mitigation":"Restrict access to the queue to the IP addresses of the Web Server and Background Worker. Implement authentication on the queue endpoint.",
+    "Model Mitigation":"1. **Implement Message Signing:** The Web Application must sign each message with a private key (using a standard like JWS) before enqueuing it. The Background Worker must then verify this signature using the corresponding public key before processing. This provides message authenticity and integrity.<br>2. **Network and Access Control:** Use network policies and ACLs to ensure that only the Web Application's specific service account and IP address can write to the queue. Use mTLS for connections to the queue to authenticate both client and server.",
+    "overlap":1,
+    "contrastive":0.0157746822,
+    "similarity":0.8745831847,
+    "Similarity_SecureBERT2.0-base":0.9415383339,
+    "Similarity_CTI-BERT":0.8340184689,
+    "Similarity_ATTACK-BERT":0.8481927514
+  },
+  {
+    "Category":"Tampering",
+    "Base":5,
+    "Model":3,
+    "Base Mitigation":"Sign all queue messages at the Web Server. Validate the message signature at the Background Worker and reject any message with a missing or invalid signature. Log any failed messages.",
+    "Model Mitigation":"1. **Message Signing (HMAC\/Digital Signatures):** Compute a Hash-based Message Authentication Code (HMAC) or a digital signature of the message payload and include it as a message header. The Background Worker must validate this signature before processing. Any tampering with the payload will invalidate the signature.<br>2. **Authenticated Encryption:** Encrypt the message payload using an authenticated encryption mode (e.g., AES-GCM). This provides both confidentiality and integrity, making it impossible to tamper with the ciphertext without detection.",
+    "overlap":1,
+    "contrastive":0.0508986413,
+    "similarity":0.7515571713,
+    "Similarity_SecureBERT2.0-base":0.8877950311,
+    "Similarity_CTI-BERT":0.7997214794,
+    "Similarity_ATTACK-BERT":0.5671550035
+  }
+]

@@ -1,0 +1,65 @@
+[
+    {
+        "ID": 0,
+        "Category": "Spoofing",
+        "Threat": "An attacker on the same 'public access LAN' as the IoT Edge device could impersonate the M1 module. By using techniques like ARP spoofing, the attacker can intercept the initial connection from the user's browser, presenting a fake web application to steal credentials or inject malicious scripts. Theft of user credentials (if login is part of the webapp), manipulation of the user's view of the system, or launching client-side attacks against the user's browser.",
+        "Mitigation": "- Implement HTTPS (TLS): Configure the web server in the M1 module to serve its content exclusively over HTTPS (`https://`). This requires provisioning a TLS certificate for the module's endpoint.<br>- Use Trusted Certificates: The TLS certificate used by M1 must be issued by a Certificate Authority (CA) that is trusted by default in users' browsers. Avoid self-signed certificates, which train users to ignore security warnings.<br>- Network-Level Controls: As a defense-in-depth measure, deploy network infrastructure (switches) that support and have Dynamic ARP Inspection (DAI) enabled to prevent ARP spoofing attacks on the LAN.",
+        "Risk": "6.80 out of 10"
+    },
+    {
+        "ID": 1,
+        "Category": "Spoofing",
+        "Threat": "An attacker on the 'public access LAN' can send crafted WebSocket messages to M2 or M3, pretending to be a legitimate upstream module (e.g., spoofing M1 to M2). This could be used to inject malicious or fabricated data into the processing pipeline. Generation of incorrect audio output, pollution of debug data in Azure Storage, or triggering unintended actions in downstream modules.",
+        "Mitigation": "- Implement Mutual TLS (mTLS): Require all inter-module communications to use mTLS. Each module must possess a unique client certificate, and downstream modules (M2, M3) must be configured to validate this certificate and only accept connections from modules presenting a trusted certificate. This provides strong, two-way authentication.<br>- Use Secure WebSockets (WSS): All inter-module communication must use the `wss://` protocol to ensure a TLS-encrypted and authenticated channel.",
+        "Risk": "7.20 out of 10"
+    },
+    {
+        "ID": 2,
+        "Category": "Spoofing",
+        "Threat": "An attacker on the IoT Edge device's network path to the internet could use DNS spoofing to redirect requests for Azure Cognitive Services to a malicious server. The malicious server could then capture the connection string from the request headers. Loss of the Cognitive Service connection string, allowing the attacker to make unauthorized API calls, leading to financial cost and data leakage.",
+        "Mitigation": "- Rely on Standard TLS Certificate Validation: The Azure SDKs inherently use HTTPS, which validates the server's certificate against a trusted root CA store. This process naturally defeats simple DNS spoofing as the attacker's server will not have a valid certificate for `*.cognitiveservices.azure.com`.<br>- Harden Host DNS Resolution: Configure the IoT Edge host OS to use encrypted DNS protocols like DNS-over-HTTPS (DoH) or DNS-over-TLS (DoT). This encrypts DNS queries, preventing them from being intercepted or spoofed by a network attacker.",
+        "Risk": "6.60 out of 10"
+    },
+    {
+        "ID": 3,
+        "Category": "Tampering",
+        "Threat": "Since modules communicate via WebSockets on a public access LAN, an attacker can perform a Man-in-the-Middle (MITM) attack to intercept and alter the data flowing between M1, M2, and M3. For example, they could modify the video frames in transit. The system processes altered data, leading to incorrect OCR and Text-to-Speech results. Confidential information in the video could be replaced or manipulated.",
+        "Mitigation": "- Enforce Secure WebSockets (WSS): Mandate the use of `wss://` for all WebSocket connections between modules. The underlying TLS protocol provides data integrity through Message Authentication Codes (MACs), which guarantees that any modification to the data in transit will be detected, causing the connection to be dropped.",
+        "Risk": "7.00 out of 10"
+    },
+    {
+        "ID": 4,
+        "Category": "Tampering",
+        "Threat": "An attacker with access to the IoT Edge device's local storage could modify the container images for M1, M2, or M3 that were deployed by the CI/CD pipeline. The next time the module starts, it will run the attacker's tampered code. Complete compromise of the module's functionality, data exfiltration, or using the module as a pivot point to attack other systems.",
+        "Mitigation": "- Implement Image Signing: Integrate Docker Content Trust (Notary) into your CI/CD pipeline to cryptographically sign all container images. Configure the IoT Edge runtime on the device to enforce signature verification, ensuring it will only pull and run images that have a valid signature from your trusted registry.<br>- Harden Host OS Storage: Employ host-level security controls such as full disk encryption (e.g., LUKS, BitLocker), secure boot, and restrictive file system permissions (e.g., using SELinux/AppArmor) to prevent unauthorized access and modification of the container image storage directory (`/var/lib/docker` or equivalent).",
+        "Risk": "7.00 out of 10"
+    },
+    {
+        "ID": 5,
+        "Category": "Tampering",
+        "Threat": "An attacker who has obtained the connection string for the Azure Storage account can directly connect to it and modify or delete the 'feedback frames' uploaded by M2 for debugging purposes. Loss of critical debugging data, preventing developers from diagnosing issues. Malicious data could be planted to mislead developers or hide evidence of an attack.",
+        "Mitigation": "- Use Managed Identity and RBAC: The most secure method. Use an Azure AD Managed Identity for the IoT Edge device. Grant this identity a granular RBAC role (e.g., \"Storage Blob Data Contributor\") scoped specifically to the 'feedback frames' container, not the entire storage account. This eliminates the connection string entirely.<br>- Implement Least-Privilege SAS Tokens: If Managed Identity is not viable, generate short-lived Shared Access Signature (SAS) tokens with write-only permissions scoped to the specific target container. The module should request a new token periodically.<br>- Enable Blob Soft Delete: Enable the soft delete feature on the Azure Storage account. This allows for the recovery of blobs that an attacker might delete, preserving critical debug data.",
+        "Risk": "5.20 out of 10"
+    },
+    {
+        "ID": 6,
+        "Category": "Repudiation",
+        "Threat": "The system sends telemetry to Application Insights. An attacker who has compromised a module on the device could stop it from sending telemetry before performing malicious actions, leaving no trace in the logs. The attacker's actions go undetected. The operations team is unable to prove that a specific device was compromised or that a malicious action occurred, hindering incident response.",
+        "Mitigation": "- Implement Heartbeat Monitoring: Each module should emit a periodic \"I'm alive\" heartbeat signal to Azure Monitor. Configure an alert rule that triggers if a device's heartbeat is missing for a predefined interval, indicating a potential compromise or failure.<br>- Leverage IoT Edge Runtime Logs: Ensure the IoT Edge runtime's own logs (which record module start/stop events) are being collected and sent to a secure, centralized log workspace. An attacker within a container cannot easily suppress these external logs.<br>- Deploy Azure Defender for IoT: Install the security module for Azure Defender for IoT on the device. It provides threat detection for the IoT Edge device and modules, including alerts for events like unexpected module termination.",
+        "Risk": "5.40 out of 10"
+    },
+    {
+        "ID": 7,
+        "Category": "Information Disclosure",
+        "Threat": "The WebSocket communication between M1, M2, and M3 on the 'public access LAN' may not be encrypted (i.e., using `ws://` instead of `wss://`). An attacker on the LAN can passively sniff this traffic and capture the raw video frames and OCR results. Complete loss of confidentiality for all data processed by the system, including potentially sensitive visual information and text.",
+        "Mitigation": "- Mandate Secure WebSockets (WSS): All inter-module communication must use the `wss://` protocol. This wraps the WebSocket traffic in TLS, providing strong encryption that prevents any network eavesdropper from viewing the confidential data being transmitted between modules.",
+        "Risk": "6.40 out of 10"
+    },
+    {
+        "ID": 8,
+        "Category": "Denial of Service",
+        "Threat": "An attacker who has stolen an Azure connection string (e.g., for Cognitive Services) can run a script to make an unlimited number of API calls. This will rapidly consume the service's monthly quota or incur a very large bill. Legitimate requests from the IoT device will be throttled or blocked, and the service owner will face a significant financial impact.",
+        "Mitigation": "- Set Billing Alerts: Configure budget alerts in Azure Cost Management to send notifications when spending on the service or subscription exceeds a defined threshold. This provides early detection of financial abuse.<br>- Use Quota-Limited Service Tiers: Select a pricing tier for the Azure service that has built-in rate or transaction limits that align with expected legitimate usage.<br>- Eliminate Persistent Secrets: Prioritize the use of Managed Identity or short-lived, narrowly-scoped SAS tokens over static connection strings. This drastically reduces the window of opportunity for an attacker to abuse a stolen credential.",
+        "Risk": "7.40 out of 10"
+    }
+]
