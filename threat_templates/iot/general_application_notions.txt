@@ -1,0 +1,4 @@
+Application Type: IoT Application
+Sensitivity Level: Confidential
+Internet-facing: Yes
+Authentication methods: None
